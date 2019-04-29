@@ -1,0 +1,63 @@
+{
+  "name": "react-redux-antd-cli",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "webpack-dev-server --config webpack.dev.js --open",
+    "build": "export NODE_ENV=production && webpack --config webpack.prod.js",
+    "qa-build": "export NODE_ENV=qa && webpack --config webpack.prod.js",
+    "lint": "eslint src/ --fix",
+    "prettier": "prettier --write 'src/**/*.js'",
+    "precommit": "yarn prettier && yarn lint"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yurong111/React-redux-antd-cli.git"
+  },
+  "author": "hwr",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/yurong111/React-redux-antd-cli/issues"
+  },
+  "homepage": "https://github.com/yurong111/React-redux-antd-cli#readme",
+  "devDependencies": {
+    "@babel/core": "^7.4.4",
+    "@babel/plugin-proposal-class-properties": "^7.4.4",
+    "@babel/plugin-proposal-decorators": "^7.4.4",
+    "@babel/plugin-syntax-dynamic-import": "^7.2.0",
+    "@babel/plugin-transform-runtime": "^7.4.4",
+    "@babel/preset-env": "^7.4.4",
+    "@babel/preset-react": "^7.0.0",
+    "babel-eslint": "^10.0.1",
+    "babel-loader": "^8.0.5",
+    "css-loader": "^2.1.1",
+    "eslint": "^5.16.0",
+    "eslint-config-prettier": "^4.2.0",
+    "eslint-config-standard": "^12.0.0",
+    "eslint-config-standard-react": "^7.0.2",
+    "eslint-plugin-import": "^2.17.2",
+    "eslint-plugin-node": "^8.0.1",
+    "eslint-plugin-prettier": "^3.0.1",
+    "eslint-plugin-promise": "^4.1.1",
+    "eslint-plugin-react": "^7.12.4",
+    "eslint-plugin-standard": "^4.0.0",
+    "html-loader": "^0.5.5",
+    "html-webpack-plugin": "^3.2.0",
+    "node-sass": "^4.12.0",
+    "prettier": "^1.17.0",
+    "sass-loader": "^7.1.0",
+    "style-loader": "^0.23.1",
+    "url-loader": "^1.1.2",
+    "webpack": "^4.30.0",
+    "webpack-cli": "^3.3.1",
+    "webpack-dev-server": "^3.3.1",
+    "webpack-merge": "^4.2.1"
+  },
+  "dependencies": {
+    "@babel/runtime": "^7.4.4",
+    "antd": "^3.16.6",
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6"
+  }
+}
