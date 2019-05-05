@@ -1,12 +1,11 @@
-import React, { PropTypes, Component } from 'react'
-import { Form, Carousel } from 'antd'
-import { bindActionCreators } from 'redux'
+import React from 'react'
+import { Carousel } from 'antd'
 import { connect } from 'react-redux'
 import action from '../../store/actions'
+import PropTypes from 'prop-types'
 
-const FormItem = Form.Item
-
-class Index extends Component {
+@connect(state => {})
+class Home extends React.Component {
   constructor(props) {
     super(props)
 
@@ -14,7 +13,7 @@ class Index extends Component {
   }
 
   componentDidMount() {
-    this.props.add(2)
+    this.props.dispatch(action.getBanner())
   }
 
   render() {
@@ -32,18 +31,8 @@ class Index extends Component {
   }
 }
 
-function mapStateToProps(state) {
-  const { home } = state
-  return {}
-}
+export default Home
 
-function mapDispatchToProps(dispatch) {
-  return {
-    add: bindActionCreators(action.add, dispatch),
-  }
+Home.propTypes = {
+  dispatch: PropTypes.func,
 }
-
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(Form.create({})(Index))

@@ -1,5 +1,9 @@
 const path = require('path')
+const webpack = require('webpack')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
+const env = require('./config/env')
+const mode = process.env.NODE_MODE
+
 module.exports = {
   entry: './src/index.js',
   output: {
@@ -11,6 +15,9 @@ module.exports = {
     new HtmlWebpackPlugin({
       template: './src/index.html',
       filename: './index.html',
+    }),
+    new webpack.DefinePlugin({
+      DATA_HOST: JSON.stringify(env[mode].DATA_HOST),
     }),
   ],
   module: {

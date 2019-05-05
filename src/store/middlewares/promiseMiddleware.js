@@ -1,13 +1,10 @@
 export default function promiseMiddleware(store) {
   return next => action => {
-    let dispatch = store.dispatch
-
     if (!isPromise(action.payload)) {
       return next(action)
     }
 
-    const { type, payload, meta, params = {} } = action
-    const { promise, data } = payload
+    const { type } = action
 
     next({ type: `${type}_PENDING` })
 
