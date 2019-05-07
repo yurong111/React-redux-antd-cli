@@ -1,9 +1,14 @@
-import React from 'react'
+import React, { Suspense, lazy } from 'react'
 import { Layout, Menu, Breadcrumb, Icon } from 'antd'
 import { BrowserRouter, Route, Link } from 'react-router-dom'
-import Home from './pages/home/'
-import About from './pages/about/'
-import Topics from './pages/topics/'
+
+const Home = lazy(() => import(/* webpackChunkName: "home" */ './pages/home/'))
+const About = lazy(() =>
+  import(/* webpackChunkName: "about" */ './pages/about/')
+)
+const Topics = lazy(() =>
+  import(/* webpackChunkName: "topics" */ './pages/topics/')
+)
 
 const { Header, Content, Footer, Sider } = Layout
 const SubMenu = Menu.SubMenu
@@ -71,9 +76,11 @@ class App extends React.Component {
                 <Breadcrumb.Item>Bill</Breadcrumb.Item> */}
               </Breadcrumb>
               <div style={{ padding: 24, background: '#fff', minHeight: 360 }}>
-                <Route exact path='/' component={Home} />
-                <Route path='/about' component={About} />
-                <Route path='/topics' component={Topics} />
+                <Suspense fallback={<div>Loading...</div>}>
+                  <Route exact path='/' component={Home} />
+                  <Route path='/about' component={About} />
+                  <Route path='/topics' component={Topics} />
+                </Suspense>
               </div>
             </Content>
             <Footer style={{ textAlign: 'center' }}>
@@ -81,31 +88,6 @@ class App extends React.Component {
             </Footer>
           </Layout>
         </Layout>
-
-        {/* <Layout>
-            <Header>Header</Header>
-            <Layout>
-              <Sider>
-                <ul>
-                  <li>
-                    <Link to='/'>Home</Link>
-                  </li>
-                  <li>
-                    <Link to='/about'>About</Link>
-                  </li>
-                  <li>
-                    <Link to='/topics'>Topics</Link>
-                  </li>
-                </ul>
-              </Sider>
-              <Content>
-                <Route exact path='/' component={Home} />
-                <Route path='/about' component={About} />
-                <Route path='/topics' component={Topics} />
-              </Content>
-            </Layout>
-            <Footer>Footer</Footer>
-          </Layout> */}
       </BrowserRouter>
     )
   }
