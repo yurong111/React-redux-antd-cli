@@ -10,6 +10,7 @@ module.exports = {
     path: path.resolve(__dirname, 'dist'),
     filename: '[name].js',
     chunkFilename: '[name].[chunkhash:4].js',
+    publicPath: '/',
   },
   plugins: [
     new HtmlWebpackPlugin({

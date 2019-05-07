@@ -3,16 +3,16 @@ const merge = require('webpack-merge')
 const common = require('./webpack.common.js')
 const env = require('./config/env')
 
-let DATAHOST =
+let DATA_HOST =
   process.env.NODE_ENV === 'production'
-    ? JSON.stringify(env.production.DATAHOST)
-    : JSON.stringify(env.qa.DATAHOST)
+    ? JSON.stringify(env.production.DATA_HOST)
+    : JSON.stringify(env.qa.DATA_HOST)
 
 module.exports = merge(common, {
   mode: 'production',
   plugins: [
     new webpack.DefinePlugin({
-      DATAHOST: DATAHOST,
+      DATA_HOST: DATA_HOST,
     }),
   ],
 })

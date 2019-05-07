@@ -8,16 +8,17 @@ module.exports = merge(common, {
   devtool: 'eval-source-map',
   plugins: [
     new webpack.DefinePlugin({
-      DATAHOST: JSON.stringify(''),
+      DATA_HOST: JSON.stringify(''),
       Request_URL: JSON.stringify(env.development.Request_URL),
     }),
   ],
   devServer: {
+    historyApiFallback: true,
     port: 3000,
     contentBase: path.join(__dirname, 'dist'),
     proxy: {
       '/api': {
-        target: env.development.DATAHOST,
+        target: env.development.DATA_HOST,
         changeOrigin: true, // target是域名的话，需要这个参数，
         secure: false, // 设置支持https协议的代理
       },
