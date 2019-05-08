@@ -7,6 +7,7 @@ import App from './app'
 
 ReactDOM.render(
   <Provider store={store}>
+    <div className='testStyle' />
     <App />
   </Provider>,
   document.getElementById('root')
