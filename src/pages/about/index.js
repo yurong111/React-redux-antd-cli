@@ -1,5 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
+import './index.scss'
 
 @connect(state => {})
 class About extends React.Component {

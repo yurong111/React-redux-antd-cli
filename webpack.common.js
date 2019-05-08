@@ -1,6 +1,7 @@
 const path = require('path')
 const webpack = require('webpack')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
+const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const env = require('./config/env')
 const mode = process.env.NODE_MODE
 
@@ -17,9 +18,6 @@ module.exports = {
       template: './src/index.html',
       filename: './index.html',
     }),
-    new webpack.DefinePlugin({
-      DATA_HOST: JSON.stringify(env[mode].DATA_HOST),
-    }),
   ],
   module: {
     rules: [
@@ -31,11 +29,17 @@ module.exports = {
         },
       },
       {
-        test: /\.scss$/,
+        test: /\.(sa|sc|c)ss$/,
         use: [
-          'style-loader', // creates style nodes from JS strings
-          'css-loader', // translates CSS into CommonJS
-          'sass-loader', // compiles Sass to CSS, using Node Sass by default
+          {
+            loader: MiniCssExtractPlugin.loader,
+            options: {
+              hmr: mode === 'development',
+            },
+          },
+          'css-loader',
+          'postcss-loader',
+          'sass-loader',
         ],
       },
       {

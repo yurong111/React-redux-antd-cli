@@ -5,6 +5,7 @@ const env = require('./config/env')
 const CleanWebpackPlugin = require('clean-webpack-plugin')
 const ParallelUglifyPlugin = require('webpack-parallel-uglify-plugin')
 const path = require('path')
+const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 
 let DATA_HOST =
   process.env.NODE_ENV === 'production'
@@ -21,16 +22,16 @@ module.exports = merge(common, {
     new ParallelUglifyPlugin({
       uglifyJS: {},
     }),
+    new MiniCssExtractPlugin({
+      // Options similar to the same options in webpackOptions.output
+      // both options are optional
+      filename: '[name].css',
+      chunkFilename: '[name].[hash:4].css',
+    }),
   ],
   optimization: {
     splitChunks: {
       chunks: 'all',
-      cacheGroups: {
-        'react-vendor': {
-          test: (module, chunks) => /react/.test(module.context),
-          priority: 1,
-        },
-      },
     },
     runtimeChunk: true,
   },
