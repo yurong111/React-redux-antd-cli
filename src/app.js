@@ -45,8 +45,12 @@ class SiderMenu extends React.Component {
             break
           }
         }
-        this.openKeys = [oneLevelKey]
-        this.selectedKeys = isOneLevel ? [oneLevelKey] : [twoLevelKey]
+        if (!isOneLevel) {
+          this.openKeys = [oneLevelKey]
+          this.selectedKeys = [twoLevelKey]
+        } else {
+          this.selectedKeys = [oneLevelKey]
+        }
         break
       default:
         this.selectedKeys = [oneLevelKey]
@@ -62,6 +66,12 @@ class SiderMenu extends React.Component {
         collapsible
         collapsed={this.state.collapsed}
         onCollapse={this.onCollapse}
+        style={{
+          overflow: 'auto',
+          height: '100vh',
+          position: 'fixed',
+          left: 0,
+        }}
       >
         <div className='logo' />
         <Menu
@@ -113,14 +123,16 @@ class App extends React.Component {
       <BrowserRouter>
         <Layout style={{ minHeight: '100vh' }}>
           <SiderMenu />
-          <Layout>
+          <Layout style={{ marginLeft: 200 }}>
             <Header style={{ background: '#fff', padding: 0 }} />
-            <Content style={{ margin: '0 16px' }}>
+            <Content style={{ margin: '24px 16px 0', overflow: 'initial' }}>
               <Breadcrumb style={{ margin: '16px 0' }}>
                 {/* <Breadcrumb.Item>User</Breadcrumb.Item>
                 <Breadcrumb.Item>Bill</Breadcrumb.Item> */}
               </Breadcrumb>
-              <div style={{ padding: 24, background: '#fff', minHeight: 360 }}>
+              <div
+                style={{ padding: 24, background: '#fff', textAlign: 'center' }}
+              >
                 <Suspense fallback={<div>Loading...</div>}>
                   <Switch>
                     <Route

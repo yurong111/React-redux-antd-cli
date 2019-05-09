@@ -1,19 +1,23 @@
-import createReducer from '../../../utils/createReducer'
+import createReducer from '../../../libs/createReducer'
 import types from './types'
+import * as utils from '../../../utils'
 
 const initialState = {
-  list: null,
+  articleObject: undefined,
 }
 
 export default createReducer(initialState, {
-  [`${types.ADD}_PENDING`]: (state, action) => {
+  [`${types.LIST}_PENDING`]: (state, action) => {
     return Object.assign({}, state, {
-      list: [],
+      articleObject: undefined,
     })
   },
-  [`${types.ADD}_SUCCESS`]: (state, action) => {
+  [`${types.LIST}_SUCCESS`]: (state, action) => {
     return Object.assign({}, state, {
-      list: action.payload.data,
+      articleObject: {
+        ...action.payload.data,
+        pagination: utils.parsePagination(action.payload.data.meta),
+      },
     })
   },
 })

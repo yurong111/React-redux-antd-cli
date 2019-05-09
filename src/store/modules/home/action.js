@@ -1,11 +1,11 @@
 import types from './types'
 import io from '../../../io/'
 
-export function getBanner() {
+export function getBanner(params) {
   return {
-    type: types.ADD,
+    type: types.LIST,
     payload: {
-      promise: io.getBanner(),
+      promise: io.getBanner(params),
     },
   }
 }
