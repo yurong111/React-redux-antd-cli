@@ -3,3 +3,4 @@ npm-debug.log
 dist/
 .orig
 yarn-error.log
+config/env.js
